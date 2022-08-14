@@ -33,7 +33,7 @@ const Setup = ({ darkMode, setDarkMode }) => {
                 <div className='w-full  p-2 justify-between  flex-wrap md:flex-row flex-col flex  gap-8'>
 
                     {/* /icon 1 */}
-                    <div onClick={(e) => {
+                    <div data-aos="fade-right" onClick={(e) => {
 
                         WebRef.current?.scrollIntoView({ behavior: 'smooth' });
                         setCurrent('Web');

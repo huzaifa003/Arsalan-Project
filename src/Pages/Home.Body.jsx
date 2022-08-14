@@ -20,7 +20,7 @@ import CustomAccordian from '../Components/CustomAccordian'
 import { questions } from '../Components/FaqData'
 import { AiOutlineArrowLeft } from 'react-icons/ai'
 import { AiOutlineArrowRight } from 'react-icons/ai'
-
+import Carousel from 'react-material-ui-carousel'
 
 const HomeBody = ({ darkMode, setDarkMode }) => {
 
@@ -204,19 +204,21 @@ const HomeBody = ({ darkMode, setDarkMode }) => {
             </div> */}
             {/* Custom card slider */}
             <div className='z-10 '>
-                <div className='relative h-[300px] md:w-[90vw] lg:w-[900px] mx-auto z-10 items-center overflow-x-hidden justify-center '>
-                    <div onClick={handlePrevious} className='absolute top-[50%] translate-y-[-50%] left-2 md:left-32'><AiOutlineArrowLeft color='white' fontSize={30} /></div>
+
+                    {/* <div onClick={handlePrevious} className='absolute top-[50%] translate-y-[-50%] left-2 md:left-32'><AiOutlineArrowLeft color='white' fontSize={30} /></div> */}
+                    <Carousel animation = "slide" navButtonsAlwaysVisible = "true"> 
                     {
                         customSmallCaardData.map((item, index) => {
-                            if (index == currentSlide)
-                                return <div className=' absolute left-[50%] translate-x-[-50%]'>
+                            
+                                return <div style={{display: 'flex',  justifyContent:'center', alignItems:'center', height: 'fit-content', maxHeight: '60vh'}}>
                                     <CustomSmallCard key={index} {...item} />
                                 </div>
                         })
                     }
-                    <div onClick={handleNext} className='absolute top-[50%] translate-y-[-50%] right-2 md:right-32'><AiOutlineArrowRight color='white' fontSize={30} /></div>
+                    </Carousel>
+                    {/* <div onClick={handleNext} className='absolute top-[50%] translate-y-[-50%] right-2 md:right-32'><AiOutlineArrowRight color='white' fontSize={30} /></div> */}
                 </div>
-            </div>
+      
 
             {/* text and headings below small custom cards on web page */}
             <div className='w-[70vw] mx-auto flex items-center justify-center mt-8'>
