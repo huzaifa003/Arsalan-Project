@@ -29,10 +29,10 @@ const Navbar = ({ darkMode, setDarkMode }) => {
 
                 </div>
                 <div className='md:flex  md:justify-center text-white font-medium gap-6 '>
+                    <Link to='/tutorial'><p >HOME</p></Link>
                     <Link to='/channel'><p >CHANNELS</p></Link>
                     <Link to='/setup'><p >SETUP</p></Link>
                     <Link to='/reseller'><p >RESELLERS</p></Link>
-                    <Link to='/tutorial'><p >TUTORIALS</p></Link>
                 </div>
                 <div className='flex items-center  md:w-[35%]  justify-end gap-4 relative'>
                     <button type='button'
@@ -41,10 +41,6 @@ const Navbar = ({ darkMode, setDarkMode }) => {
                     </button>
                     <button className='bg-green-200 text-white px-2 py-1 rounded-sm'>
                         ORDER NOW
-                    </button>
-
-                    <button type='button m-0 p-0 flex items-center justify-center'>
-                        <TbGridDots fontSize={27} color='white' />
                     </button>
                     <button type='button'
                         onClick={() => setDarkMode(!darkMode)} >

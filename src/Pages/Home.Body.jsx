@@ -158,9 +158,14 @@ const HomeBody = ({ darkMode, setDarkMode }) => {
                     })
                 }
             </div>
-            <div className='gap-8 flex flex-col mx-auto  items-center justify-center flex-wrap  w-[90vw] lg:w-[940px]'>
-                <h1 className='text-white font-bold text-4xl'>Uptime</h1>
-                <h2 className='text-white font-semibold text-2xl'>Last 90 Days</h2>
+            <div className='gap-8 flex flex-col mx-auto  items-start justify-center flex-wrap  w-[90vw] lg:w-[940px]'>
+                <div className='flex'>
+                    <h1 className='text-white font-bold text-4xl'>Uptime</h1>
+                    <h2 className='text-gray-300 font-semibold text-2xl mt-2 ml-4'>Last 90 Days</h2>
+                </div>
+
+
+
                 <div className='w-full p-6 flex flex-col gap-8 dark:bg-blue-darkmd bg-white rounded-md shadow-sm'>
                     {
                         progrssBarData.map((item, index) => {

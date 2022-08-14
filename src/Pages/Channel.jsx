@@ -126,13 +126,13 @@ const Channel = () => {
             <p className='text-white mt-6 text-center font-semibold text-lg'>An Easy Access And Super Simple IPTV Services For Your Devives</p>
             <div className='flex md:flex-row my-12  flex-col items-center justify-center gap-4 sm:w-auto  md:w-[90%] lg:max-w-[1400px] mx-auto'>
                 {/* left menu */}
-                <div className='dark:bg-[#040E2E] overflowy p-1  md:h-[600px] md:w-[30%] w-[90%] flex flex-col items-center justify-start  gap-2 bg-[#FFFFFF] rounded-md shadow-md'>
+                <div className='dark:bg-[#040E2E]  overflow-h p-2 px-2  md:h-[600px] md:w-[20%] w-[90%] flex flex-col items-center justify-start  gap-2 bg-[#FFFFFF] rounded-md shadow-md'>
                     {/* /button 1 */}
                     <div onClick={(e) => { setCurrent('Animals'); }}
                         className={` ${current == 'Animals' ? Activebtn : notActiveBtn} `}>
 
                         <button className='flex items-center justify-between w-full p-1'>
-                            <h1 className='font-bold text-xl'>Animals</h1>
+                            <h1 className='font-bold text-md'>ANIMALS</h1>
                             <AiOutlineArrowRight />
                         </button>
                     </div>
@@ -143,28 +143,27 @@ const Channel = () => {
 
                     }}
                         className={` ${current == 'Plants' ? Activebtn : notActiveBtn}`}>
-
                         <button className='flex items-center justify-between w-full p-1'>
-                            <h1 className='font-bold text-xl'>Plants</h1>
+                            <h1 className='font-bold text-md'>PLANTS</h1>
                             <AiOutlineArrowRight />
                         </button>
-
                     </div>
 
 
                 </div>
-                <div className='md:w-[50%] lg:max-w-[800px] w-[90%]  rounded-md shadow-md h-[600px] overflow-y-auto flex flex-row flex-wrap gap-8 items-start justify-center p-1 dark:bg-blue-darkmd bg-[#FFFFFF] '>
-                    <div className='w-full  relative'>
-                        <AiOutlineSearch fontSize={30} color='black' className='absolute right-0 top-[50%] translate-y-[-50%]' />
-                        <input placeholder='Search' type="search " className='w-full border-none outline-none p-2 rounded-md shadow-md' value={search} onChange={(e) => setSearch(e.target.value)} />
+
+                <div className='md:w-[50%] lg:max-w-[800px] w-[90%] p-6  rounded-md shadow-md h-[600px] overflow-hidden flex flex-col gap-8 items-start justify-start  dark:bg-blue-darkmd bg-[#FFFFFF] '>
+                    <div className='w-full  relative top-2'>
+                        <AiOutlineSearch fontSize={30} color='white' className='absolute right-4 top-[50%] translate-y-[-50%]' />
+                        <input placeholder='Search' type="search " className='w-full border-none outline-none dark:text-white text-black  bg-[#E2E4E8] dark:bg-[#262F4A] p-2 px-4 rounded-md shadow-md' value={search} onChange={(e) => setSearch(e.target.value)} />
                     </div>
-                    <div className='grid  grid-cols-2 gap-2'>
+                    <div className='grid grid-cols-2 gap-2 '>
 
                         {
 
                             filteredArray && filteredArray.map((animal, index) => {
 
-                                return <h1 key={index} className='max-w-[400px] rounded-md shadow-md  h-[40px] px-4 py-0.5 dark:bg-[#262F4A] dark:text-white  bg-[#E2E4E8] text-black text-2xl overflow-hidden'>{animal}</h1>
+                                return <h1 key={index} className='max-w-[400px] rounded-md shadow-md  h-[30px] px-4 py-0.5 dark:bg-[#262F4A] dark:text-white  bg-[#E2E4E8] text-black text-xl overflow-hidden'>{animal.toUpperCase()}</h1>
                             })
                         }
                     </div>

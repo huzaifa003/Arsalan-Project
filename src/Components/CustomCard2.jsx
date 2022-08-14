@@ -8,9 +8,9 @@ const CustomCard2 = ({ mainHeading, subHeading, subPara, buttonHeading, image })
                 <img src={image} alt="picture" />
             </div>
             <div className='flex flex-col md:max-w-[300px] items-start justify-start gap-4 w-full'>
-                <h1 className='dark:text-blue-700 text-5xl font-semibold'>{mainHeading}</h1>
-                <h1 className='dark:text-white text-4xl font-bold'>{subHeading}</h1>
-                <p className='text-justify w-full dark:text-white font-lg font-normal'>
+                <h1 className='text-blue-700 text-5xl font-semibold'>{mainHeading}</h1>
+                <h1 className='dark:text-white text-blue-lightmdbg text-4xl font-bold'>{subHeading}</h1>
+                <p className='text-justify w-full dark:text-white  text-blue-lightmdbg  font-lg font-normal'>
                     {subPara}
                 </p>
                 < div className='flex items-center justify-center' >
