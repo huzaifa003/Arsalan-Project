@@ -22,7 +22,7 @@ const CustomAccordian = ({ question, answer }) => {
         </AccordionSummary>
         <AccordionDetails>
           <Typography>
-            {answer}
+            {answer} 
           </Typography>
         </AccordionDetails>
       </Accordion>
