@@ -215,19 +215,19 @@ const Setup = ({ darkMode, setDarkMode }) => {
               </MediaQuery>
        
             <div className='mt-6 max-w-full md:w-[90%]  lg:max-w-[1100px] dark:bg-blue-darkmd bg-white dark:text-white transition-all duration-300 ease-in-out text-blue-lightmd rounded-lg shadow-lg mx-auto flex items-center justify-center p-8'>
-                {current === 'Web' && (prevIndex > index)? <Slide duration= {700} enter = 'false' left> <div ref={WebRef}><WebSetup /></div> </Slide > : ''}
+                {current === 'Web' && (prevIndex >= index)? <Slide duration= {700} enter = 'false' left> <div ref={WebRef}><WebSetup /></div> </Slide > : ''}
                 {current === 'Web' && (prevIndex < index)? <Slide duration= {700} enter = 'false' right> <div ref={WebRef}><WebSetup /></div> </Slide > : ''}
 
-                {current === 'Mobile'  && (prevIndex > index) ? <Slide left duration= {700} enter = 'false'> <div ref={MobileRef}> <MobileSetup /></div> </Slide > : ''}
+                {current === 'Mobile'  && (prevIndex >= index) ? <Slide left duration= {700} enter = 'false'> <div ref={MobileRef}> <MobileSetup /></div> </Slide > : ''}
                 {current === 'Mobile'  && (prevIndex < index) ? <Slide right duration= {700} enter = 'false'> <div ref={MobileRef}> <MobileSetup /></div> </Slide > : ''}
                 
-                {current === 'TV' && (prevIndex > index) ? <Slide left duration= {700} enter = 'false'> <div ref={TvRef}><TvSetup /></div> </Slide > : ''}
+                {current === 'TV' && (prevIndex >= index) ? <Slide left duration= {700} enter = 'false'> <div ref={TvRef}><TvSetup /></div> </Slide > : ''}
                 {current === 'TV' && (prevIndex < index) ? <Slide right duration= {700} enter = 'false'> <div ref={TvRef}><TvSetup /></div> </Slide > : ''} 
 
-                {current === 'Box & Stick' && (prevIndex > index) ?  <Slide left duration= {700} enter = 'false'> <div ref={BoxRef}><BoxSetup /></div> </Slide > : ''}
+                {current === 'Box & Stick' && (prevIndex >= index) ?  <Slide left duration= {700} enter = 'false'> <div ref={BoxRef}><BoxSetup /></div> </Slide > : ''}
                 {current === 'Box & Stick' && (prevIndex < index) ? <Slide right duration= {700} enter = 'false'> <div ref={BoxRef}><BoxSetup /></div> </Slide > : ''}
 
-                {current === 'Casting' && (prevIndex > index) ?  <Slide left duration= {700} enter = 'false'> <div ref={CastingRef}><CastingSetup /></div>  </Slide > : ''}
+                {current === 'Casting' && (prevIndex >= index) ?  <Slide left duration= {700} enter = 'false'> <div ref={CastingRef}><CastingSetup /></div>  </Slide > : ''}
                 {current === 'Casting' && (prevIndex < index) ?  <Slide right duration= {700} enter = 'false'> <div ref={CastingRef}><CastingSetup /></div>  </Slide > : ''}
             </div>
         </div >
