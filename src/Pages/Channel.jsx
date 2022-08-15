@@ -1,13 +1,36 @@
 import React, { useEffect, useState } from 'react'
 import { AiOutlineArrowRight } from 'react-icons/ai'
 import { AiOutlineSearch } from 'react-icons/ai'
+import MediaQuery from 'react-responsive'
+import { Select, FormControl, InputLabel, MenuItem } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
+const Channel = ({darkMode}) => {
 
-const Channel = () => {
+    const darkTheme = createTheme({
+        palette: {
+            mode: 'dark',
+        },
+    });
+    
+    const lightTheme = createTheme({
+        palette: {
+            mode: 'light',
+        },
+    });
+
     const notActiveBtn = 'transition-all duration-300 ease-in-out dark:hover:bg-[#1e253b] hover:bg-[#cbcdd0]  dark:hover:text-white md:w-full w-full dark:text-white text-black  rounded-md dark:bg-[#262F4A] bg-[#E2E4E8] shadow-sm flex flex-col items-center justify-center gap-4'
     const Activebtn = 'transition-all duration-300 ease-in-out dark:hover:bg-white dark:hover:text-blue-lightmd md:w-full w-full  rounded-md dark:text-white text-blue-lightmd dark:bg-white dark:text-blue-darkmdbg bg-blue-darkmdbg text-slate-100 shadow-sm flex flex-col items-center justify-center gap-4'
     const [current, setCurrent] = useState('Animals');
     const [search, setSearch] = useState('')
     const [filteredArray, setfilteredArray] = useState(null)
+
+    const [muiSelectValue, setMuiSelectValue] = React.useState('Web');
+    const handleChange = (e) => {
+        setMuiSelectValue(e.target.value)
+        setCurrent(e.target.value)
+    }
+
 
     const Animals = [
         "Aardvarksdfdsfdsfdsfs",
@@ -106,6 +129,8 @@ const Channel = () => {
         "Dried Flower Shop",
         "Lawn Irrigation Equipment Supplier"
     ]
+
+
     //filtering feature
     useEffect(() => {
 
@@ -126,6 +151,8 @@ const Channel = () => {
             <p className='text-white mt-6 text-center font-semibold text-lg'>An Easy Access And Super Simple IPTV Services For Your Devives</p>
             <div className='flex md:flex-row my-12  flex-col items-center justify-center gap-4 sm:w-auto  md:w-[90%] lg:max-w-[1400px] mx-auto'>
                 {/* left menu */}
+
+                <MediaQuery minWidth={980}>
                 <div className='dark:bg-[#040E2E]  overflow-h p-2 px-2  md:h-[600px] md:w-[20%] w-[90%] flex flex-col items-center justify-start  gap-2 bg-[#FFFFFF] rounded-md shadow-md'>
                     {/* /button 1 */}
                     <div onClick={(e) => { setCurrent('Animals'); }}
@@ -151,6 +178,51 @@ const Channel = () => {
 
 
                 </div>
+                </MediaQuery>
+                
+                {/* The combo box */}
+                <MediaQuery minWidth={0} maxWidth={979}>
+
+            {darkMode?  
+                
+                <ThemeProvider theme={darkTheme}>
+                    <CssBaseline />
+                    <FormControl className='mt-24  w-full md:w-[90%]  lg:max-w-[1100px] '>
+                        <InputLabel id="demo-simple-select-label">Screen</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={muiSelectValue}
+                            label="Screen"
+                            onChange={handleChange}
+                        >
+                            <MenuItem value={'Animals'}>Animals</MenuItem>
+                            <MenuItem value={'Plants'}>Plants</MenuItem>
+                        </Select>
+                    </FormControl>
+                </ThemeProvider>
+           :
+            
+            <ThemeProvider theme={lightTheme}>
+                    <CssBaseline />
+                    <FormControl className='mt-24  w-full md:w-[90%]  lg:max-w-[1100px] '>
+                        <InputLabel id="demo-simple-select-label">Screen</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={muiSelectValue}
+                            label="Screen"
+                            onChange={handleChange}
+                        >
+                            <MenuItem value={'Animals'}>Animals</MenuItem>
+                            <MenuItem value={'Plants'}>Plants</MenuItem>
+                        </Select>
+                    </FormControl>
+                </ThemeProvider>
+         
+            
+            }
+              </MediaQuery>
 
                 <div className='md:w-[50%] lg:max-w-[800px] w-[90%] p-6  rounded-md shadow-md h-[600px] overflow-hidden flex flex-col gap-8 items-start justify-start  dark:bg-blue-darkmd bg-[#FFFFFF] '>
                     <div className='w-full  relative top-2'>
