@@ -30,6 +30,8 @@ const lightTheme = createTheme({
 
 const Setup = ({ darkMode, setDarkMode }) => {
     const [current, setCurrent] = useState('Web');
+    const [index, setIndex] = useState(0);
+    const [prevIndex, setPrevIndex] = useState(1);
     const notActiveBtn = 'transition-all duration-300 ease-in-out dark:hover:bg-white hover:bg-blue-darkmdbg hover:text-white dark:hover:text-blue-lightmd md:w-[150px] w-full md:p-6 p-4 dark:text-white text-blue-lightmd  rounded-md dark:bg-blue-darkmdbg bg-white shadow-sm flex flex-col items-center justify-center gap-4'
     const Activebtn = 'transition-all duration-300 ease-in-out dark:hover:bg-white dark:hover:text-blue-lightmd md:w-[150px] w-full md:p-6 p-4 rounded-md dark:text-white text-blue-lightmd dark:bg-white dark:text-blue-darkmdbg bg-blue-darkmdbg text-slate-100 shadow-sm flex flex-col items-center justify-center gap-4'
 
@@ -64,6 +66,9 @@ const Setup = ({ darkMode, setDarkMode }) => {
 
                                     WebRef.current?.scrollIntoView({ behavior: 'smooth' });
                                     setCurrent('Web');
+                                    setPrevIndex(index);
+                                    setIndex(0);
+                                    
 
                                 }}
 
@@ -84,8 +89,9 @@ const Setup = ({ darkMode, setDarkMode }) => {
                             <ButtonBase>
                                 <div onClick={(e) => {
                                     MobileRef.current?.scrollIntoView({ behavior: 'smooth' });
+                                    setPrevIndex(index);
                                     setCurrent('Mobile');
-
+                                    setIndex(1);
                                 }} className={` ${current == 'Mobile' ? Activebtn : notActiveBtn}`}>
 
                                     <button>
@@ -101,6 +107,8 @@ const Setup = ({ darkMode, setDarkMode }) => {
                             <ButtonBase>
                                 <div onClick={(e) => {
                                     setCurrent('TV')
+                                    setPrevIndex(index);
+                                    setIndex(2);
                                     TvRef.current?.scrollIntoView({ behavior: 'smooth' });
 
                                 }} className={` ${current == 'TV' ? Activebtn : notActiveBtn}`}>
@@ -117,8 +125,10 @@ const Setup = ({ darkMode, setDarkMode }) => {
                         <div>
                             <ButtonBase>
                                 <div onClick={(e) => {
-
+                                    
                                     setCurrent('Box & Stick')
+                                    setPrevIndex(index);
+                                    setIndex(3);
                                     BoxRef.current?.scrollIntoView({ behavior: 'smooth' });
 
                                 }} className={` ${current == 'Box & Stick' ? Activebtn : notActiveBtn}`}>
@@ -134,8 +144,10 @@ const Setup = ({ darkMode, setDarkMode }) => {
                         <div>
                             <ButtonBase>
                                 <div onClick={(e) => {
-
+                                    
                                     setCurrent('Casting');
+                                    setPrevIndex(index);
+                                    setIndex(4);
                                     CastingRef.current?.scrollIntoView({ behavior: 'smooth' });
 
                                 }} className={` ${current == 'Casting' ? Activebtn : notActiveBtn}`}>
@@ -201,12 +213,22 @@ const Setup = ({ darkMode, setDarkMode }) => {
             
             }
               </MediaQuery>
+       
             <div className='mt-6 max-w-full md:w-[90%]  lg:max-w-[1100px] dark:bg-blue-darkmd bg-white dark:text-white transition-all duration-300 ease-in-out text-blue-lightmd rounded-lg shadow-lg mx-auto flex items-center justify-center p-8'>
-                {current === 'Web' ? <Slide left> <div ref={WebRef}><WebSetup /></div> </Slide > : ''}
-                {current === 'Mobile' ? <Slide left> <div ref={MobileRef}> <MobileSetup /></div> </Slide > : ''}
-                {current === 'TV' ? <Slide left> <div ref={TvRef}><TvSetup /></div> </Slide > : ''}
-                {current === 'Box & Stick' ? <Slide left> <div ref={BoxRef}><BoxSetup /></div> </Slide > : ''}
-                {current === 'Casting' ? <Slide left> <div ref={CastingRef}><CastingSetup /></div>  </Slide > : ''}
+                {current === 'Web' && (prevIndex > index)? <Slide duration= {700} enter = 'false' left> <div ref={WebRef}><WebSetup /></div> </Slide > : ''}
+                {current === 'Web' && (prevIndex < index)? <Slide duration= {700} enter = 'false' right> <div ref={WebRef}><WebSetup /></div> </Slide > : ''}
+
+                {current === 'Mobile'  && (prevIndex > index) ? <Slide left duration= {700} enter = 'false'> <div ref={MobileRef}> <MobileSetup /></div> </Slide > : ''}
+                {current === 'Mobile'  && (prevIndex < index) ? <Slide right duration= {700} enter = 'false'> <div ref={MobileRef}> <MobileSetup /></div> </Slide > : ''}
+                
+                {current === 'TV' && (prevIndex > index) ? <Slide left duration= {700} enter = 'false'> <div ref={TvRef}><TvSetup /></div> </Slide > : ''}
+                {current === 'TV' && (prevIndex < index) ? <Slide right duration= {700} enter = 'false'> <div ref={TvRef}><TvSetup /></div> </Slide > : ''} 
+
+                {current === 'Box & Stick' && (prevIndex > index) ?  <Slide left duration= {700} enter = 'false'> <div ref={BoxRef}><BoxSetup /></div> </Slide > : ''}
+                {current === 'Box & Stick' && (prevIndex < index) ? <Slide right duration= {700} enter = 'false'> <div ref={BoxRef}><BoxSetup /></div> </Slide > : ''}
+
+                {current === 'Casting' && (prevIndex > index) ?  <Slide left duration= {700} enter = 'false'> <div ref={CastingRef}><CastingSetup /></div>  </Slide > : ''}
+                {current === 'Casting' && (prevIndex < index) ?  <Slide right duration= {700} enter = 'false'> <div ref={CastingRef}><CastingSetup /></div>  </Slide > : ''}
             </div>
         </div >
     )
