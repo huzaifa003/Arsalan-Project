@@ -11,9 +11,22 @@ import BoxSetup from '../Components/BoxSetup'
 import CastingSetup from '../Components/CastingSetup'
 import Slide from 'react-reveal/Slide';
 import { ButtonBase } from '@mui/material';
-import { useMediaQuery } from 'react-responsive'
+import MediaQuery from 'react-responsive'
+import { Select, FormControl, InputLabel, MenuItem } from '@mui/material';
+import { ThemeProvider, createTheme } from '@mui/material/styles';
+import CssBaseline from '@mui/material/CssBaseline';
 
+const darkTheme = createTheme({
+    palette: {
+        mode: 'dark',
+    },
+});
 
+const lightTheme = createTheme({
+    palette: {
+        mode: 'light',
+    },
+});
 
 const Setup = ({ darkMode, setDarkMode }) => {
     const [current, setCurrent] = useState('Web');
@@ -27,115 +40,173 @@ const Setup = ({ darkMode, setDarkMode }) => {
     const BoxRef = useRef(null);
     const CastingRef = useRef(null);
 
+    const [muiSelectValue, setMuiSelectValue] = React.useState('Web');
+    const handleChange = (e) => {
+        setMuiSelectValue(e.target.value)
+        setCurrent(e.target.value)
+    }
 
     return (
+        
         <div className=' w-screen p-8 md:p-0  mx-auto flex flex-col items-center justify-center'>
 
             <h1 className='text-center font-bold text-5xl  mt-20  text-white'>DOWNLOAD THE BEST IPTV APP</h1>
             <p className='text-center font-bold text-2xl mt-4  text-white'>Our Apps Work Flawlessly on tv, mobile and browser</p>
 
-            <div className='mt-24  w-full md:w-[90%]  lg:max-w-[1100px] flex-wrap rounded-mg shadow-sm mx-auto flex items-center justify-between flex-col gap-8'>
-                <div className='w-full h-full p-2 justify-between  flex-wrap md:flex-row flex-col flex  gap-8'>
+            <MediaQuery minWidth={980}>
+                <div className='mt-24  w-full md:w-[90%]  lg:max-w-[1100px] flex-wrap rounded-mg shadow-sm mx-auto flex items-center justify-between flex-col gap-8'>
+                    <div className='w-full h-full p-2 justify-between  flex-wrap md:flex-row flex-col flex  gap-8'>
 
-                    {/* /icon 1 */}
-                    <div>
-                    <ButtonBase style = {{height : 'max'}}>  
-                    <div className ='h-full' onClick={(e) => {
-                        
-                        WebRef.current?.scrollIntoView({ behavior: 'smooth' });
-                        setCurrent('Web');
+                        {/* /icon 1 */}
+                        <div>
+                            <ButtonBase style={{ height: 'max' }}>
+                                <div className='h-full' onClick={(e) => {
 
-                    }}
-                    
-                        className={` ${current == 'Web' ? Activebtn : notActiveBtn}`}>
-                     
-                     
-                        <button >
-                            <TbWorld fontSize={90} />
-                            <h1 className='font-bold text-xl'><a href="web">Web</a></h1>
-                        </button>
-                      
-                        
-                    </div>
-                    </ButtonBase>
-                    </div>
-                    {/* icons 2 */}
-                    <div>
-                    <ButtonBase>  
-                    <div onClick={(e) => {
-                        MobileRef.current?.scrollIntoView({ behavior: 'smooth' });
-                        setCurrent('Mobile');
+                                    WebRef.current?.scrollIntoView({ behavior: 'smooth' });
+                                    setCurrent('Web');
 
-                    }} className={` ${current == 'Mobile' ? Activebtn : notActiveBtn}`}>
+                                }}
 
-                        <button>
-                            <FaMobile fontSize={90} />
-                            <h1 className='font-bold text-xl'>Mobile</h1>
-                        </button>
+                                    className={` ${current == 'Web' ? Activebtn : notActiveBtn}`}>
 
-                    </div>
-                    </ButtonBase>
-                    </div>
-                    {/* icon 3 */}
-                    <div>
-                    <ButtonBase>  
-                    <div onClick={(e) => {
-                        setCurrent('TV')
-                        TvRef.current?.scrollIntoView({ behavior: 'smooth' });
 
-                    }} className={` ${current == 'TV' ? Activebtn : notActiveBtn}`}>
-                        <button>
-                            <FiMonitor fontSize={90} />
-                            <h1 className='font-bold text-xl'>TV</h1>
-                        </button>
+                                    <button >
+                                        <TbWorld fontSize={90} />
+                                        <h1 className='font-bold text-xl'><a href="web">Web</a></h1>
+                                    </button>
 
-                    </div>
-                    
-                    </ButtonBase>
-                    </div>
-                    {/* icon 4 */}
-                    <div>
-                    <ButtonBase>  
-                    <div onClick={(e) => {
 
-                        setCurrent('Box & Stick')
-                        BoxRef.current?.scrollIntoView({ behavior: 'smooth' });
+                                </div>
+                            </ButtonBase>
+                        </div>
+                        {/* icons 2 */}
+                        <div>
+                            <ButtonBase>
+                                <div onClick={(e) => {
+                                    MobileRef.current?.scrollIntoView({ behavior: 'smooth' });
+                                    setCurrent('Mobile');
 
-                    }} className={` ${current == 'Box & Stick' ? Activebtn : notActiveBtn}`}>
-                        <button>
-                            <TbDevices fontSize={60} />
-                            <h1 className='font-bold text-xl'>Box & Stick</h1>
-                        </button>
+                                }} className={` ${current == 'Mobile' ? Activebtn : notActiveBtn}`}>
 
-                    </div>
-                    </ButtonBase>
-                    </div>
+                                    <button>
+                                        <FaMobile fontSize={90} />
+                                        <h1 className='font-bold text-xl'>Mobile</h1>
+                                    </button>
 
-                    <div>
-                    <ButtonBase>  
-                    <div onClick={(e) => {
+                                </div>
+                            </ButtonBase>
+                        </div>
+                        {/* icon 3 */}
+                        <div>
+                            <ButtonBase>
+                                <div onClick={(e) => {
+                                    setCurrent('TV')
+                                    TvRef.current?.scrollIntoView({ behavior: 'smooth' });
 
-                        setCurrent('Casting');
-                        CastingRef.current?.scrollIntoView({ behavior: 'smooth' });
+                                }} className={` ${current == 'TV' ? Activebtn : notActiveBtn}`}>
+                                    <button>
+                                        <FiMonitor fontSize={90} />
+                                        <h1 className='font-bold text-xl'>TV</h1>
+                                    </button>
 
-                    }} className={` ${current == 'Casting' ? Activebtn : notActiveBtn}`}>
-                        <button>
-                            <h1><MdCastConnected fontSize={90} /></h1>
-                            <h1 className='font-bold text-xl'>Casting</h1>
-                        </button>
+                                </div>
 
-                    </div>
+                            </ButtonBase>
+                        </div>
+                        {/* icon 4 */}
+                        <div>
+                            <ButtonBase>
+                                <div onClick={(e) => {
 
-                    </ButtonBase>
+                                    setCurrent('Box & Stick')
+                                    BoxRef.current?.scrollIntoView({ behavior: 'smooth' });
+
+                                }} className={` ${current == 'Box & Stick' ? Activebtn : notActiveBtn}`}>
+                                    <button>
+                                        <TbDevices fontSize={60} />
+                                        <h1 className='font-bold text-xl'>Box & Stick</h1>
+                                    </button>
+
+                                </div>
+                            </ButtonBase>
+                        </div>
+
+                        <div>
+                            <ButtonBase>
+                                <div onClick={(e) => {
+
+                                    setCurrent('Casting');
+                                    CastingRef.current?.scrollIntoView({ behavior: 'smooth' });
+
+                                }} className={` ${current == 'Casting' ? Activebtn : notActiveBtn}`}>
+                                    <button>
+                                        <h1><MdCastConnected fontSize={90} /></h1>
+                                        <h1 className='font-bold text-xl'>Casting</h1>
+                                    </button>
+
+                                </div>
+
+                            </ButtonBase>
+                        </div>
                     </div>
                 </div>
-            </div>
+
+            </MediaQuery>
+            
+            <MediaQuery minWidth={0} maxWidth={979}>
+
+            {darkMode?  
+                
+                <ThemeProvider theme={darkTheme}>
+                    <CssBaseline />
+                    <FormControl className='mt-24  w-full md:w-[90%]  lg:max-w-[1100px] '>
+                        <InputLabel id="demo-simple-select-label">Screen</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={muiSelectValue}
+                            label="Screen"
+                            onChange={handleChange}
+                        >
+                            <MenuItem value={'Web'}>Web</MenuItem>
+                            <MenuItem value={'Mobile'}>Mobile</MenuItem>
+                            <MenuItem value={'TV'}>TV</MenuItem>
+                            <MenuItem value={'Box & Stick'}>Box & Stick</MenuItem>
+                            <MenuItem value={'Casting'}>Casting</MenuItem>
+                        </Select>
+                    </FormControl>
+                </ThemeProvider>
+           :
+            
+            <ThemeProvider theme={lightTheme}>
+                    <CssBaseline />
+                    <FormControl className='mt-24  w-full md:w-[90%]  lg:max-w-[1100px] '>
+                        <InputLabel id="demo-simple-select-label">Screen</InputLabel>
+                        <Select
+                            labelId="demo-simple-select-label"
+                            id="demo-simple-select"
+                            value={muiSelectValue}
+                            label="Screen"
+                            onChange={handleChange}
+                        >
+                            <MenuItem value={'Web'}>Web</MenuItem>
+                            <MenuItem value={'Mobile'}>Mobile</MenuItem>
+                            <MenuItem value={'TV'}>TV</MenuItem>
+                            <MenuItem value={'Box & Stick'}>Box & Stick</MenuItem>
+                            <MenuItem value={'Casting'}>Casting</MenuItem>
+                        </Select>
+                    </FormControl>
+                </ThemeProvider>
+         
+            
+            }
+              </MediaQuery>
             <div className='mt-6 max-w-full md:w-[90%]  lg:max-w-[1100px] dark:bg-blue-darkmd bg-white dark:text-white transition-all duration-300 ease-in-out text-blue-lightmd rounded-lg shadow-lg mx-auto flex items-center justify-center p-8'>
-                {current === 'Web' ? <Slide left> <div ref={WebRef}><WebSetup /></div> </Slide > : '' }
+                {current === 'Web' ? <Slide left> <div ref={WebRef}><WebSetup /></div> </Slide > : ''}
                 {current === 'Mobile' ? <Slide left> <div ref={MobileRef}> <MobileSetup /></div> </Slide > : ''}
-                {current === 'TV' ?  <Slide left> <div ref={TvRef}><TvSetup /></div> </Slide > : ''}
+                {current === 'TV' ? <Slide left> <div ref={TvRef}><TvSetup /></div> </Slide > : ''}
                 {current === 'Box & Stick' ? <Slide left> <div ref={BoxRef}><BoxSetup /></div> </Slide > : ''}
-                {current === 'Casting' ?  <Slide left> <div ref={CastingRef}><CastingSetup /></div>  </Slide >: ''}
+                {current === 'Casting' ? <Slide left> <div ref={CastingRef}><CastingSetup /></div>  </Slide > : ''}
             </div>
         </div >
     )
