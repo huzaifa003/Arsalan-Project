@@ -95,7 +95,7 @@ const Home = ({ darkMode, setDarkMode }) => {
                 }
                 <Routes>
                     <Route path='/' element={<HomeBody darkMode={darkMode} setDarkMode={setDarkMode} />} exact />
-                    <Route path='/channel' element={<Channel />} />
+                    <Route path='/channel' element={<Channel darkMode={darkMode} setDarkMode = {setDarkMode} />}  />
                     <Route path='/reseller' element={<Reseller darkMode={darkMode} setDarkMode={setDarkMode} />} />
                     <Route path='/setup' element={<Setup darkMode={darkMode} setDarkMode={setDarkMode} />} />
                     <Route path='/tutorial' element={<Tutorial />} />
