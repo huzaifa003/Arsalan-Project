@@ -5,14 +5,14 @@ import MediaQuery from 'react-responsive'
 import { Select, FormControl, InputLabel, MenuItem } from '@mui/material';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
-const Channel = ({darkMode}) => {
+const Channel = ({ darkMode, setDarkMode }) => {
 
     const darkTheme = createTheme({
         palette: {
             mode: 'dark',
         },
     });
-    
+
     const lightTheme = createTheme({
         palette: {
             mode: 'light',
@@ -25,7 +25,7 @@ const Channel = ({darkMode}) => {
     const [search, setSearch] = useState('')
     const [filteredArray, setfilteredArray] = useState(null)
 
-    const [muiSelectValue, setMuiSelectValue] = React.useState('Web');
+    const [muiSelectValue, setMuiSelectValue] = React.useState('Animals');
     const handleChange = (e) => {
         setMuiSelectValue(e.target.value)
         setCurrent(e.target.value)
@@ -134,6 +134,7 @@ const Channel = ({darkMode}) => {
     //filtering feature
     useEffect(() => {
 
+        console.log(darkMode)
         if (current == 'Animals') {
             let temp = Animals.filter((animal) => (animal.toLowerCase().includes(search.toLowerCase())));
             setfilteredArray(temp);
@@ -153,38 +154,39 @@ const Channel = ({darkMode}) => {
                 {/* left menu */}
 
                 <MediaQuery minWidth={980}>
-                <div className='dark:bg-[#040E2E]  overflow-h p-2 px-2  md:h-[600px] md:w-[20%] w-[90%] flex flex-col items-center justify-start  gap-2 bg-[#FFFFFF] rounded-md shadow-md'>
-                    {/* /button 1 */}
-                    <div onClick={(e) => { setCurrent('Animals'); }}
-                        className={` ${current == 'Animals' ? Activebtn : notActiveBtn} `}>
+                    <div className='dark:bg-[#040E2E]  overflow-h p-2 px-2  md:h-[600px] md:w-[20%] w-[90%] flex flex-col items-center justify-start  gap-2 bg-[#FFFFFF] rounded-md shadow-md'>
+                        {/* /button 1 */}
+                        <div onClick={(e) => { setCurrent('Animals'); }}
+                            className={` ${current == 'Animals' ? Activebtn : notActiveBtn} `}>
 
-                        <button className='flex items-center justify-between w-full p-1'>
-                            <h1 className='font-bold text-md'>ANIMALS</h1>
-                            <AiOutlineArrowRight />
-                        </button>
+                            <button className='flex items-center justify-between w-full p-1'>
+                                <h1 className='font-bold text-md'>ANIMALS</h1>
+                                <AiOutlineArrowRight />
+                            </button>
+                        </div>
+
+                        {/* /button 2 */}
+                        <div onClick={(e) => {
+                            setCurrent('Plants');
+
+                        }}
+                            className={` ${current == 'Plants' ? Activebtn : notActiveBtn}`}>
+                            <button className='flex items-center justify-between w-full p-1'>
+                                <h1 className='font-bold text-md'>PLANTS</h1>
+                                <AiOutlineArrowRight />
+                            </button>
+                        </div>
+
+
                     </div>
-
-                    {/* /button 2 */}
-                    <div onClick={(e) => {
-                        setCurrent('Plants');
-
-                    }}
-                        className={` ${current == 'Plants' ? Activebtn : notActiveBtn}`}>
-                        <button className='flex items-center justify-between w-full p-1'>
-                            <h1 className='font-bold text-md'>PLANTS</h1>
-                            <AiOutlineArrowRight />
-                        </button>
-                    </div>
-
-
-                </div>
                 </MediaQuery>
-                
+
                 {/* The combo box */}
                 <MediaQuery minWidth={0} maxWidth={979}>
 
             {darkMode?  
-                
+
+<div className='dark:bg-[#040E2E]  overflow-h p-2 px-2  md:h-[600px] md:w-[20%] w-[90%] flex flex-col items-center justify-start  gap-2 bg-[#FFFFFF] rounded-md shadow-md'>
                 <ThemeProvider theme={darkTheme}>
                     <CssBaseline />
                     <FormControl className='mt-24  w-full md:w-[90%]  lg:max-w-[1100px] '>
@@ -201,8 +203,10 @@ const Channel = ({darkMode}) => {
                         </Select>
                     </FormControl>
                 </ThemeProvider>
+                </div>
            :
             
+           <div className='dark:bg-[#040E2E]  overflow-h p-2 px-2  md:h-[600px] md:w-[20%] w-[90%] flex flex-col items-center justify-start  gap-2 bg-[#FFFFFF] rounded-md shadow-md'>
             <ThemeProvider theme={lightTheme}>
                     <CssBaseline />
                     <FormControl className='mt-24  w-full md:w-[90%]  lg:max-w-[1100px] '>
@@ -219,8 +223,7 @@ const Channel = ({darkMode}) => {
                         </Select>
                     </FormControl>
                 </ThemeProvider>
-         
-            
+                </div>
             }
               </MediaQuery>
 
